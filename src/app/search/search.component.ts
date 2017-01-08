@@ -1,15 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {
+    OpenscriptoriumService,
+    PackageResult, Package
+} from '../openscriptorium.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ModalContent} from './modal.component';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
-  constructor() { }
+    result: PackageResult;
 
-  ngOnInit() {
-  }
+    constructor(private service: OpenscriptoriumService, private modalService: NgbModal) {
+    }
 
+    onSearch(term: string) {
+        this.service.search(term).subscribe((result) => {
+            this.result = result;
+        });
+    }
+
+    openModal(pkg: Package) {
+        let ref = this.modalService.open(ModalContent);
+        ref.componentInstance.pkg = pkg;
+    }
 }

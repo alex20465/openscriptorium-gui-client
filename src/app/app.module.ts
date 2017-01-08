@@ -4,22 +4,29 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
-import {SearchComponent} from './search/search.component';
+import {AppRouteModule} from './app.routing.module';
 import {RouterModule} from '@angular/router';
-import {routes} from './app.routes';
+import {OpenscriptoriumService} from './openscriptorium.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {SearchModule} from './search/search.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        SearchComponent
     ],
+
     imports: [
-        RouterModule.forRoot(routes),
+        NgbModule.forRoot(),
+        RouterModule,
+        SearchModule,
+        AppRouteModule,
         BrowserModule,
         FormsModule,
         HttpModule
     ],
-    providers: [],
+    providers: [
+        OpenscriptoriumService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

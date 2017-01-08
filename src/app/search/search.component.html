@@ -1,4 +1,26 @@
-<p>
-  search works!
-
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <input
+            #search_term
+            (keyup.enter)="onSearch(search_term.value)"
+            type="text"
+            class="form-control"
+            placeholder="Package search ...">
+    </div>
+    <div class="col-md-12">
+        <hr/>
+    </div>
+    <div class="col-md-12">
+        <div class="list-group" *ngIf="result && result.packages.length">
+            <div *ngFor="let pkg of result.packages"
+                 class="list-group-item">
+                <a class="list-group-item-heading" (click)="openModal(pkg)">
+                    <h4>{{pkg.name}}</h4>
+                </a>
+                <p class="list-group-item-text">
+                    thisis desc
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
