@@ -12,15 +12,13 @@
     </div>
     <div class="col-md-12">
         <div class="list-group" *ngIf="result && result.packages.length">
-            <div *ngFor="let pkg of result.packages"
+            <a *ngFor="let pkg of result.packages" href="#" (click)="openModal(pkg)"
                  class="list-group-item">
-                <a class="list-group-item-heading" (click)="openModal(pkg)">
-                    <h4>{{pkg.name}}</h4>
-                </a>
+                <h4 class="list-group-item-heading">{{pkg.name}}</h4>
                 <p class="list-group-item-text">
-                    thisis desc
+                    {{pkg.short_description}}
                 </p>
-            </div>
+            </a>
         </div>
     </div>
 </div>

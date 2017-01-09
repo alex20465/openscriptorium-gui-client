@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {PackageModalComponent} from '../package/package.modal.component';
 import {
     OpenscriptoriumService,
     PackageResult, Package
 } from '../openscriptorium.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ModalContent} from './modal.component';
 
 @Component({
     selector: 'app-search',
@@ -25,7 +25,7 @@ export class SearchComponent {
     }
 
     openModal(pkg: Package) {
-        let ref = this.modalService.open(ModalContent);
+        let ref = this.modalService.open(PackageModalComponent);
         ref.componentInstance.pkg = pkg;
     }
 }

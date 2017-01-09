@@ -12,9 +12,8 @@ import {SearchModule} from './search/search.module';
 
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
-
     imports: [
         NgbModule.forRoot(),
         RouterModule,

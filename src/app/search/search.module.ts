@@ -1,18 +1,22 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ModalContent} from './modal.component';
 import {SearchComponent} from './search.component';
+import {MarkdownPipe} from '../markdown.pipe';
+import {
+    PackageModalComponent
+} from '../package/package.modal.component';
 
 @NgModule({
     imports: [
-        CommonModule,
+        CommonModule
     ],
     entryComponents: [
-        ModalContent
+        PackageModalComponent
     ],
     declarations: [
-        ModalContent,
-        SearchComponent
+        PackageModalComponent,
+        SearchComponent,
+        MarkdownPipe
     ]
 })
 export class SearchModule {

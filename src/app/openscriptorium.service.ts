@@ -10,10 +10,14 @@ export class Script {
     version: string;
     platforms: Array<string>;
     architectures: Array<string>;
+    requires_superuser: boolean;
+    source_url: string;
 }
 
 export class Package {
     name: string;
+    description: string;
+    short_description: string;
     scripts: Array<Script>
 }
 
@@ -38,13 +42,15 @@ class PackageHydrator implements Hydrator<Package> {
 
     hydrate(data: Object, instance: Package): Package {
         instance.name = data['name'] || null;
+        instance.description = data['description'] || null;
+        instance.short_description = data['short_description'] || null;
+
         instance.scripts = data['scripts'].map((data) => {
             let script = new Script();
             let hydrator = new ScriptHydrator();
             hydrator.hydrate(data, script);
             return script;
         });
-
         return instance;
     }
 }
@@ -61,7 +67,8 @@ class ScriptHydrator implements Hydrator<Script> {
         instance.version = data['version'] || null;
         instance.platforms = data['platforms'] || null;
         instance.architectures = data['architectures'] || null;
-
+        instance.requires_superuser = data['requires_superuser'] || null;
+        instance.source_url = data['detail'];
         return instance;
     }
 }
