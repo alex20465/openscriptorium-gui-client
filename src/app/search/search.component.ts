@@ -19,7 +19,7 @@ export class SearchComponent {
     }
 
     onSearch(term: string) {
-        this.service.search(term).subscribe((result) => {
+        this.service.search(term).then((result) => {
             this.result = result;
         });
     }
