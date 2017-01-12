@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { ExecuterService } from './executer.service';
+import { ElectronService } from './electron.service';
 
-describe('ExecuterService', () => {
+describe('ElectronService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ExecuterService]
+      providers: [ElectronService]
     });
   });
 
-  it('should ...', inject([ExecuterService], (service: ExecuterService) => {
+  it('should ...', inject([ElectronService], (service: ElectronService) => {
     expect(service).toBeTruthy();
   }));
 });

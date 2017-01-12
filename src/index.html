@@ -6,21 +6,9 @@
     <base href="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <!-- build:remove -->
-    <!-- Connect to server process -->
-    <script>
-        window.originRequire = require;
-        var client = require('electron-connect').client.create();
-        client.on('changeLocation', function (href) {
-            window.location.href = href;
-        });
-    </script>
-    <!-- end:build -->
 </head>
 
 <body>
-
-
 <app-root>Loading...</app-root>
 </body>
 </html>

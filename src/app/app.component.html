@@ -3,10 +3,38 @@
         <a href="#" class="navbar-brand">
             <strong>Open</strong>Scriptorium
         </a>
+        <ul class="nav navbar-nav">
+            <li routerLinkActive="active">
+                <a routerLink="/search">
+                    <i class="glyphicon glyphicon-search"></i> Search
+                </a>
+            </li>
+            <li routerLinkActive="active">
+                <a routerLink="/runner">
+                    <i class="glyphicon glyphicon-retweet"></i> Runner <span
+                    class="label label-danger">{{runner.count()}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-star-empty"></i> Favorites
+                </a>
+            </li>
+        </ul>
+        <div class="navbar-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-cog"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
 <template ngbModalContainer></template>
+<app-notify></app-notify>
 
 <div class="container">
     <router-outlet></router-outlet>

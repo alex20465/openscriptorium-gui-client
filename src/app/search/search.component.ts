@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {PackageModalComponent} from '../package/package.modal.component';
+import {ModalComponent} from '../package/modal/modal.component';
 import {
     OpenscriptoriumService,
     PackageResult, Package
@@ -15,7 +15,8 @@ export class SearchComponent {
 
     result: PackageResult;
 
-    constructor(private service: OpenscriptoriumService, private modalService: NgbModal) {
+    constructor(private service: OpenscriptoriumService,
+                private modalService: NgbModal) {
     }
 
     onSearch(term: string) {
@@ -25,7 +26,7 @@ export class SearchComponent {
     }
 
     openModal(pkg: Package) {
-        let ref = this.modalService.open(PackageModalComponent);
+        let ref = this.modalService.open(ModalComponent);
         ref.componentInstance.pkg = pkg;
     }
 }

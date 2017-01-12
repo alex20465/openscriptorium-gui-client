@@ -7,21 +7,25 @@ const path = require('path');
 const url = require('url');
 var mainWindow;
 
+
 function createWindow() {
-    mainWindow = new BrowserWindow({width: 800, height: 600});
+    mainWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
+        minWidth: 800,
+        minHeight: 600,
+        focus: false
+    });
 
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'dist/index.html'),
         protocol: 'file:',
         slashes: true
     }));
-
     mainWindow.webContents.openDevTools();
-
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
-    client.create(mainWindow);
 }
 
 app.on('ready', createWindow);
