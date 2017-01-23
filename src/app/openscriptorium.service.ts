@@ -106,8 +106,7 @@ export class OpenscriptoriumService {
     search(term): Promise<PackageResult> {
         return <any>this.http.get(`${this.url}/packages/?term=${term}`)
             .map(this.parse)
-            .toPromise()
-            .catch(this.errorHandler);
+            .toPromise();
 
     }
 
@@ -120,11 +119,6 @@ export class OpenscriptoriumService {
         return results;
     }
 
-    private errorHandler(err: Error) {
-        console.log('error has been occurred');
-        return Observable.throw(err.message);
-    }
-
     public getScriptData(script: Script): Promise<Script> {
         if (script.source_url) {
             return this.http.get(script.source_url)
@@ -134,8 +128,7 @@ export class OpenscriptoriumService {
                     hydrator.hydrate(data, script);
                     return script;
                 })
-                .toPromise()
-                .catch(this.errorHandler);
+                .toPromise();
         } else {
             // expect that the script has already the required data
             return Promise.resolve(script);

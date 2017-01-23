@@ -23,24 +23,43 @@ export class Device {
 
 @Injectable()
 export class DeviceService {
-    private m_os: any;
-    private m_getos: any;
+    private modOs: any = null;
+    private modGetos: any = null;
     private deviceCache: Device = null;
 
     constructor() {
-        this.m_os = (<any>window).require('os');
-        this.m_getos = (<any>window).require('getos');
+        const req = (<any>window).require || null;
+
+        if (req != null) {
+            this.modGetos = req('getos');
+            this.modOs = req('os');
+        }
+    }
+
+    isSupported(): Boolean {
+        let device: Device = null;
+        try {
+            device = this.getDevice();
+        } catch (e) { }
+
+        if (device === null) {
+            return false;
+        }
+
+        return (new DeviceSupportEvaluator(device)).isSupported();
     }
 
     getDevice(): Device {
-        if (this.deviceCache) {
+        if (this.modOs === null || this.modGetos === null) {
+            throw new Error('Device is not recognizable.');
+        } else if (this.deviceCache) {
             return this.deviceCache;
         } else {
             const device = new Device();
-            device.platform = this.m_os.platform();
-            device.architecture = this.m_os.arch();
-            device.hostname = this.m_os.hostname();
-            this.m_getos((e, os) => {
+            device.platform = this.modOs.platform();
+            device.architecture = this.modOs.arch();
+            device.hostname = this.modOs.hostname();
+            this.modGetos((e, os) => {
                 if (e !== null) {
                     throw e;
                 }

@@ -8,7 +8,7 @@ export enum AlertLevel {
 
 export class Alert {
 
-    constructor(public title: string, public message: string, public level: AlertLevel) {
+    constructor(public id: string, public message: string, public level: AlertLevel) {
 
     }
 }
@@ -17,6 +17,7 @@ export class Alert {
 @Injectable()
 export class ManagerService {
     private _alerts: Array<Alert> = [];
+    private _alert_map: Object = {};
 
     get alerts(): Array<Alert> {
         return this._alerts;
@@ -26,8 +27,18 @@ export class ManagerService {
         this._alerts = value;
     }
 
-    constructor() {
+    private add(id: string, alert: Alert) {
+        if (this._alert_map[id] !== undefined) {
+            // replace
+            let alertIndex = this._alerts.indexOf(this._alert_map[id]);
+            this._alerts[alertIndex] = alert;
 
+        } else {
+            // add
+            this._alerts.push(alert);
+        }
+
+        this._alert_map[id] = alert;
     }
 
     remove(alert: Alert): Alert {
@@ -35,23 +46,23 @@ export class ManagerService {
         if (i == -1) {
             throw new Error('Alert not found!');
         }
-
+        delete this._alert_map[alert.id];
         return this.alerts.splice(i, 1).pop();
     }
 
-    success(title: string, message: string) {
-        this._alerts.push(new Alert(title, message, AlertLevel.SUCCESS));
+    success(id: string, message: string) {
+        this.add(id, new Alert(id, message, AlertLevel.SUCCESS));
     }
 
-    warning(title: string, message: string) {
-        this._alerts.push(new Alert(title, message, AlertLevel.WARNING));
+    warning(id: string, message: string) {
+        this.add(id, new Alert(id, message, AlertLevel.WARNING));
     }
 
-    danger(title: string, message: string) {
-        this._alerts.push(new Alert(title, message, AlertLevel.DANGER));
+    danger(id: string, message: string) {
+        this.add(id, new Alert(id, message, AlertLevel.DANGER));
     }
 
-    info(title: string, message: string) {
-        this._alerts.push(new Alert(title, message, AlertLevel.INFO));
+    info(id: string, message: string) {
+        this.add(id, new Alert(id, message, AlertLevel.INFO));
     }
 }

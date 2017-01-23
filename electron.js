@@ -26,6 +26,8 @@ function createWindow() {
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
+
+    client.create(mainWindow);
 }
 
 app.on('ready', createWindow);

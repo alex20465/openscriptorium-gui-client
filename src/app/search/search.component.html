@@ -1,19 +1,21 @@
 <div class="row">
     <div class="col-md-12">
-        <input
-            #search_term
-            (keyup.enter)="onSearch(search_term.value)"
-            type="text"
-            class="form-control"
-            placeholder="Package search ...">
+        <input id="search-input"
+               #search_term
+               (keyup.enter)="onSearch(search_term.value)"
+               type="text"
+               class="form-control"
+               placeholder="Package search ...">
     </div>
     <div class="col-md-12">
         <hr/>
     </div>
     <div class="col-md-12">
-        <div class="list-group" *ngIf="result && result.packages.length">
-            <a *ngFor="let pkg of result.packages" href="#" (click)="openModal(pkg)"
-                 class="list-group-item">
+        <div id="search-result-list" class="list-group"
+             *ngIf="result && result.packages.length">
+            <a *ngFor="let pkg of result.packages" href="#"
+               (click)="openModal(pkg)"
+               class="list-group-item">
                 <h4 class="list-group-item-heading">{{pkg.name}}</h4>
                 <p class="list-group-item-text">
                     {{pkg.short_description}}

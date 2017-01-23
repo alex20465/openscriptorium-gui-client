@@ -6,6 +6,7 @@ import {
     ExecuteSubscriptionEntry, ExecuteSubscriptionTypes
 } from '../../runner/manager.service';
 import {Observable} from 'rxjs';
+import {DeviceService} from '../../device.service';
 
 
 @Component({

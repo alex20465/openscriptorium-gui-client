@@ -1,0 +1,18 @@
+
+.well.well-terminal {
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.well.well-terminal li.stderr {
+    color: red;
+}
+
+.well.well-terminal ul {
+    list-style: none;
+    font-family: monospace;
+    line-height: 19px;
+    padding: 0px;
+}

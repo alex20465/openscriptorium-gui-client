@@ -1,0 +1,22 @@
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.flex-container-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-container-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-item-fill {
+    flex: 1;
+}

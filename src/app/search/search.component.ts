@@ -5,6 +5,7 @@ import {
     OpenscriptoriumService,
     PackageResult, Package
 } from '../openscriptorium.service';
+import {ManagerService} from '../notify/manager.service';
 
 @Component({
     selector: 'app-search',
@@ -16,13 +17,18 @@ export class SearchComponent {
     result: PackageResult;
 
     constructor(private service: OpenscriptoriumService,
-                private modalService: NgbModal) {
+                private modalService: NgbModal, private notify: ManagerService) {
     }
 
     onSearch(term: string) {
-        this.service.search(term).then((result) => {
-            this.result = result;
-        });
+        this.service.search(term)
+            .then((result) => {
+                this.result = result;
+            })
+            .catch((err) => {
+                this.notify.danger(
+                    'search', `Search query failed!`);
+            });
     }
 
     openModal(pkg: Package) {

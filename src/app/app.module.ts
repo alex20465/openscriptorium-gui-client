@@ -11,15 +11,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SearchModule} from './search/search.module';
 import {RunnerComponent} from './runner/runner.component';
 import {NotifyModule} from './notify/notify.module';
-import {NotifyComponent} from './notify/notify.component';
-import {AlertClassPipe} from './notify/alert-class.pipe';
-import {ManagerService} from './runner/manager.service';
+import {RunnerModule} from './runner/runner.module';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        RunnerComponent
     ],
     imports: [
         NgbModule.forRoot(),
@@ -28,12 +25,12 @@ import {ManagerService} from './runner/manager.service';
         AppRouteModule,
         BrowserModule,
         FormsModule,
+        RunnerModule,
         NotifyModule,
         HttpModule
     ],
     providers: [
-        OpenscriptoriumService,
-        ManagerService
+        OpenscriptoriumService
     ],
     bootstrap: [AppComponent]
 })

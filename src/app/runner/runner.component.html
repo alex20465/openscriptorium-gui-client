@@ -1,29 +1,40 @@
-<div *ngIf="runner.currentRunningPackage !== null" class="list-group">
-    <div class="list-group-item">
-        <div class="row">
-            <div class="col-sm-10">
-                <strong>{{runner.currentRunningPackage.name}}</strong>
-            </div>
-            <div class="col-sm-2 text-right">
-                <div class="btn btn-success btn-xs">
-                    <i class="glyphicon glyphicon-alert"></i>
+<div class="row flex-item-fill flex-container-row">
+    <div class="col-sm-4 flex-container-column">
+        <div id="process-list" class="list-group" *ngIf="hasItems()">
+            <div
+                class="list-group-item"
+                [class.active]="selectedProcess === proc"
+                (click)="selectProcess(proc)"
+                *ngFor="let proc of getItems()">
+                {{proc.pkg.name}}
+                <div class="badge" ngbTooltip="{{proc.status|statusLabel}}">
+                    <i
+                        class="glyphicon"
+                        [class.glyphicon-pause]="proc.status == 'queued'"
+                        [class.glyphicon-save]="proc.status == 'fetching'"
+                        [class.glyphicon-remove]="proc.status == 'failed'"
+                        [class.glyphicon-ok]="proc.status == 'success'"
+                        [class.glyphicon-repeat]="proc.status == 'running'">
+                    </i>
                 </div>
             </div>
         </div>
+        <h4 class="text-center" *ngIf="!hasItems()">
+            <i>No Processes</i>
+        </h4>
     </div>
-</div>
-
-<div class="list-group">
-    <div *ngFor="let item of runner.unfinishedQueue" class="list-group-item">
-        <div class="row">
-            <div class="col-sm-10">
-                <strong>{{item.name}}</strong>
-            </div>
-            <div class="col-sm-2 text-right">
-                <div class="btn btn-success btn-xs">
-                    <i class="glyphicon glyphicon-alert"></i>
-                </div>
-            </div>
+    <div class="col-sm-8 flex-container-column">
+        <div class="well well-sm well-terminal flex-item-fill">
+            <ul *ngIf="selectedProcess !== null">
+                <li *ngIf="!selectedProcess.lineOutputs.length"
+                    class="text-center">
+                    <i>no output</i>
+                </li>
+                <li *ngFor="let output of selectedProcess.lineOutputs"
+                    [class.stderr]="output.channel == 'stderr'"
+                    [class.stdout]="output.channel == 'stdout'">{{output.data}}
+                </li>
+            </ul>
         </div>
     </div>
 </div>
