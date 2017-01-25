@@ -1,12 +1,10 @@
 const electron = require('electron');
-const client = require('electron-connect').client;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
 const url = require('url');
 var mainWindow;
-
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -22,12 +20,15 @@ function createWindow() {
         protocol: 'file:',
         slashes: true
     }));
-    mainWindow.webContents.openDevTools();
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
 
-    client.create(mainWindow);
+    if(process.env.OS_ENV == 'development') {
+        mainWindow.webContents.openDevTools();
+        var client = require('electron-connect');
+        client.create(mainWindow);
+    }
 }
 
 app.on('ready', createWindow);
