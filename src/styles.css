@@ -1,10 +1,12 @@
 
 html {
     height: 100%;
+    overflow: hidden;
 }
 
 body {
     height: 100%;
+    overflow: hidden;
 }
 
 .btn.close-btn {
@@ -34,10 +36,18 @@ body {
     flex: 1;
 }
 
-.draggable {
+.fill-relative-height {
+    height: 100%;
+}
+
+.row.fill-relative-height {
+    height: calc(100% - 30px);
+}
+
+.drag-region {
     -webkit-app-region: drag;
 }
 
-.draggable > * {
+.drag-region a, .drag-region button {
     -webkit-app-region: no-drag;
 }

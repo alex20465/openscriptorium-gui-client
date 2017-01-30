@@ -1,4 +1,6 @@
 
 .main-container {
     height: calc(100% - 72px);
+    overflow: visible;
+    overflow-y: auto;
 }
