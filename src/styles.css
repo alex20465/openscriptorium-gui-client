@@ -7,6 +7,19 @@ body {
     height: 100%;
 }
 
+.btn.close-btn {
+    position: absolute;
+    right: 0px;
+    padding: 13px;
+    top: 0px;
+}
+
+.text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .flex-container-row {
     display: flex;
     flex-direction: row;
@@ -19,4 +32,12 @@ body {
 
 .flex-item-fill {
     flex: 1;
+}
+
+.draggable {
+    -webkit-app-region: drag;
+}
+
+.draggable > * {
+    -webkit-app-region: no-drag;
 }

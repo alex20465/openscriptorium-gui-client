@@ -22,4 +22,8 @@ export class AppComponent {
             ref.tick();
         });
     }
+
+    public close() {
+        window.close();
+    }
 }

@@ -1,30 +1,23 @@
 <div class="navbar navbar-default">
-    <div class="container-fluid">
-        <a href="#" class="navbar-brand">
-            <strong>Open</strong>Scriptorium
-        </a>
-        <ul class="nav navbar-nav">
-            <li routerLinkActive="active">
-                <a routerLink="/search">
-                    <i class="glyphicon glyphicon-search"></i> Search
-                </a>
-            </li>
-            <li routerLinkActive="active">
-                <a routerLink="/runner">
-                    <i class="glyphicon glyphicon-retweet"></i> Runner
-                    <span class="label label-danger" *ngIf="!!runner.count()">{{runner.count()}}</span>
-                </a>
-            </li>
-        </ul>
-        <div class="navbar-right">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-cog"></i>
-                    </a>
-                </li>
-            </ul>
+    <div class="container-fluid draggable">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <strong>Open</strong>Scriptorium
+            </a>
+            <a class="btn navbar-btn" routerLink="/search"
+               routerLinkActive="btn-primary disabled">
+                <i class="glyphicon glyphicon-search"></i> Search
+            </a>
+            <a class="btn navbar-btn" routerLink="/runner"
+               routerLinkActive="btn-primary disabled">
+                <i class="glyphicon glyphicon-retweet"></i> Runner
+                <span class="label label-danger" *ngIf="!!runner.count()">{{runner.count()}}</span>
+            </a>
         </div>
+
+        <a (click)="close()" class="btn close-btn">
+            <div class="glyphicon glyphicon-remove"></div>
+        </a>
     </div>
 </div>
 
