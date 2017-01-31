@@ -1,0 +1,16 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - npm install
+      - npm install angular-cli -g
+  build:
+    commands:
+      - ng build
+      - npm run pack-electron
+      - npm run pack-debian-64
+artifacts:
+  files:
+   - dist/installers
+  discard-paths: yes

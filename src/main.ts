@@ -9,4 +9,10 @@ if (environment.production) {
     enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
+    const loader = document.getElementById('application-loader');
+    loader.className = 'loaded application-leader-wrapper';
+    setTimeout(() => {
+        loader.parentNode.removeChild(loader);
+    }, 300);
+});

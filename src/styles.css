@@ -9,6 +9,45 @@ body {
     overflow: hidden;
 }
 
+.application-leader-wrapper {
+    display: flex;
+    position: fixed;
+    background-color: #eaeaea;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    -webkit-transition: all linear 300ms;
+    z-index: 500;
+}
+
+.application-leader-wrapper.loaded {
+    opacity: 0;
+}
+
+@keyframes spinner {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(180deg);
+    }
+}
+
+.application-leader-wrapper > .application-loader > i.glyphicon{
+    animation-name: spinner;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.application-loader {
+    width: 64px;
+    height: 64px;
+    font-size: 64px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #b1b1b1;
+}
+
 .btn.close-btn {
     position: absolute;
     right: 0px;
