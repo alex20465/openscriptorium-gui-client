@@ -12,5 +12,5 @@ phases:
       - npm run pack-debian-64
 artifacts:
   files:
-   - dist/installers
+   - dist/installers/*.deb
   discard-paths: yes

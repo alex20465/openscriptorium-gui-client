@@ -11,7 +11,7 @@
         "pree2e": "webdriver-manager update --standalone false --gecko false",
         "e2e": "protractor",
         "build": "ng build",
-        "pack-electron": "electron-packager . openscriptorium-gui-client --platform linux --arch x64 --out dist/electron_builds",
+        "pack-electron": "electron-packager . openscriptorium-gui-client --platform linux --arch x64 --out dist/electron_builds --tmpdir false",
         "pack-debian-64": "electron-installer-debian --src dist/electron_builds/openscriptorium-gui-client-linux-x64 --dest dist/installers --arch amd64"
     },
     "private": true,
