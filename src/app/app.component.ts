@@ -17,7 +17,6 @@ export class AppComponent {
         if (!deviceService.isSupported()) {
             alertService.warning('Support', `Your device is currently not supported by openscriptorium.`);
         }
-
         runner.processReadyEvent.subscribe(pkg => {
             ref.tick();
         });

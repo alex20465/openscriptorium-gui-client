@@ -1,5 +1,9 @@
-import {Component} from '@angular/core';
-import {ManagerService, Process} from './manager.service';
+import {Component, ApplicationRef} from '@angular/core';
+import {
+    ManagerService, Process,
+    ExecuteSubscriptionEntry
+} from './manager.service';
+import {Subject, Subscription} from 'rxjs';
 
 
 @Component({
@@ -13,8 +17,9 @@ import {ManagerService, Process} from './manager.service';
 export class RunnerComponent {
 
     public selectedProcess: Process = null;
+    private selectedSubscriber: Subscription = null;
 
-    constructor(public runner: ManagerService) {
+    constructor(public runner: ManagerService, private appRef: ApplicationRef) {
         if (this.runner.currentRunningProcess) {
             this.selectProcess(this.runner.currentRunningProcess);
         } else if (this.runner.finishedQueue.length) {
@@ -26,6 +31,15 @@ export class RunnerComponent {
 
     selectProcess(proc: Process) {
         this.selectedProcess = proc;
+
+        if (this.selectedSubscriber !== null) {
+            this.selectedSubscriber.unsubscribe();
+        }
+
+        this.selectedSubscriber = proc.eventStream
+            .subscribe((entry: ExecuteSubscriptionEntry) => {
+                this.appRef.tick();
+            });
     }
 
     hasItems() {

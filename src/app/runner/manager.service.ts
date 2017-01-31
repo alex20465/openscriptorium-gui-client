@@ -160,11 +160,7 @@ export class ManagerService {
     }
 
     public count(): Number {
-        let num = this._unfinishedQueue.length;
-        if (this.isProcessing) {
-            num++;
-        }
-        return num;
+        return this._unfinishedQueue.length;
     }
 
     private process() {
@@ -204,7 +200,7 @@ export class ManagerService {
         this.currentRunningProcess = null;
         this.finishedQueue.unshift(this.unfinishedQueue.shift());
         if (proc.status === PROCESS_STATUS.FAILED) {
-            proc.eventStream.error(new Error('Failed to process!'));
+            // log the error
         }
         proc.eventStream.complete();
         this.processReadyEvent.next(proc.pkg);
