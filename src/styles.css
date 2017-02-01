@@ -33,9 +33,9 @@ body {
     }
 }
 
-.application-leader-wrapper > .application-loader > i.glyphicon{
+.application-leader-wrapper > .application-loader > i.glyphicon, .animation-spin{
     animation-name: spinner;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     -webkit-animation-iteration-count: infinite;
 }
 

@@ -16,16 +16,21 @@ export class SearchComponent {
 
     result: PackageResult;
 
+    isLoading: Boolean = false;
+
     constructor(private service: OpenscriptoriumService,
                 private modalService: NgbModal, private notify: ManagerService) {
     }
 
     onSearch(term: string) {
+        this.isLoading = true;
         this.service.search(term)
             .then((result) => {
+                this.isLoading = false;
                 this.result = result;
             })
             .catch((err) => {
+                this.isLoading = false;
                 this.notify.danger(
                     'search', `Search query failed!`);
             });

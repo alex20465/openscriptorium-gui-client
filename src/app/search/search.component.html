@@ -11,8 +11,17 @@
         <hr/>
     </div>
     <div class="col-md-12">
+        <div *ngIf="isLoading">
+            <div class="search-result-loader">
+                <div class="text-center">
+                    <i class="glyphicon glyphicon-refresh animation-spin"></i>
+                    <div class="clearfix"></div>
+                    <label>Loading</label>
+                </div>
+            </div>
+        </div>
         <div id="search-result-list" class="list-group"
-             *ngIf="result && result.packages.length">
+             *ngIf="result && result.packages.length && isLoading === false">
             <a *ngFor="let pkg of result.packages" href="#"
                (click)="openModal(pkg)"
                class="list-group-item">

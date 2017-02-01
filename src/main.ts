@@ -11,7 +11,7 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
     const loader = document.getElementById('application-loader');
-    loader.className = 'loaded application-leader-wrapper';
+    loader.className = loader.className + ' loaded';
     setTimeout(() => {
         loader.parentNode.removeChild(loader);
     }, 300);
